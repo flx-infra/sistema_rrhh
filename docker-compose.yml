@@ -13,7 +13,6 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       JWT_SECRET: ${JWT_SECRET}
-      PORT: 3001
       FRONTEND_URL: ${FRONTEND_URL}
       EMAIL_ENABLED: ${EMAIL_ENABLED}
     ports:
@@ -43,11 +42,11 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80", "||", "exit", "1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+   # healthcheck:
+    #  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80", "||", "exit", "1"]
+      #interval: 30s
+     # timeout: 10s
+     # retries: 3
     restart: unless-stopped
     networks:
       - traefik
