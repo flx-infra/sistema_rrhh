@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: fabreguesm/sistema_rrhh_back:1.0.3
+    image: fabreguesm/sistema_rrhh_back:1.0.4
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
