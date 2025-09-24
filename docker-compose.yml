@@ -30,7 +30,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: fabreguesm/sistema_rrhh_front:1.0.1
+    image: fabreguesm/sistema_rrhh_front:1.0.2
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:3001/api}
     ports:
