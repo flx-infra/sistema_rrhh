@@ -7,7 +7,6 @@ services:
   backend:
     image: fabreguesm/sistema_rrhh_back:1.0.1
     environment:
-      build: ./backend
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DB_USER: ${DB_USER}
@@ -31,7 +30,6 @@ services:
       - traefik
 
   frontend:
-    build: ./frontend
     image: fabreguesm/sistema_rrhh_front:1.0.1
     ports:
       - "3002:80"
