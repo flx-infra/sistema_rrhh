@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: 
+    image: fabreguesm/sistema_rrhh_back:1.0.1
     environment:
       DB_HOST: ${DB_HOST:-host.docker.internal}
       DB_PORT: ${DB_PORT:-3306}
@@ -30,7 +30,7 @@ services:
       - traefik
 
   frontend:
-    image: 
+    image: fabreguesm/sistema_rrhh_front:1.0.1
     ports:
       - "3002:80"
     depends_on:
