@@ -7,15 +7,15 @@ services:
   backend:
     image: fabreguesm/sistema_rrhh_back:1.0.1
     environment:
-      DB_HOST: ${DB_HOST:-host.docker.internal}
-      DB_PORT: ${DB_PORT:-3306}
-      DB_USER: ${DB_USER:-root}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME:-sistema_rrhh}
+      DB_NAME: ${DB_NAME}
       JWT_SECRET: ${JWT_SECRET}
       PORT: 3001
-      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3002}
-      EMAIL_ENABLED: ${EMAIL_ENABLED:-false}
+      FRONTEND_URL: ${FRONTEND_URL}
+      EMAIL_ENABLED: ${EMAIL_ENABLED}
     ports:
       - "3001:3001"
     volumes:
