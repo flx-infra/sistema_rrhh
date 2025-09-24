@@ -1,7 +1,11 @@
 version: '3.8'
+
+# Sistema RRHH - Portainer Compatible
+# Variables: REGISTRY_URL, IMAGE_TAG, DB_USER, DB_PASSWORD, DB_NAME, JWT_SECRET, FRONTEND_URL, REACT_APP_API_BASE_URL
+
 services:
   backend:
-    build: ./backend
+    image: 
     environment:
       DB_HOST: ${DB_HOST:-host.docker.internal}
       DB_PORT: ${DB_PORT:-3306}
@@ -26,10 +30,7 @@ services:
       - traefik
 
   frontend:
-    build:
-      context: ./frontend
-      args:
-        REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:3001/api}
+    image: 
     ports:
       - "3002:80"
     depends_on:
