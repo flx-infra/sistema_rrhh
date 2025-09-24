@@ -32,7 +32,7 @@ services:
     build: ./frontend
     image: fabreguesm/sistema_rrhh_front:1.0.4
     environment:
-      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL}
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
     ports:
       - "3002:80"
     depends_on:
