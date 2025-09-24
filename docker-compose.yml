@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: fabreguesm/sistema_rrhh_back:1.0.1
+    image: fabreguesm/sistema_rrhh_back:1.0.2
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
@@ -28,22 +28,7 @@ services:
     restart: unless-stopped
     networks:
       - traefik
-
-  frontend:
-    image: fabreguesm/sistema_rrhh_front:1.0.1
-    ports:
-      - "3002:80"
-    depends_on:
-      - backend
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80", "||", "exit", "1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
-    networks:
-      - traefik
-
+      
 volumes:
   backend_uploads:
 
