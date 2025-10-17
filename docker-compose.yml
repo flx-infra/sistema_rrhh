@@ -15,6 +15,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       FRONTEND_URL: ${FRONTEND_URL}
       EMAIL_ENABLED: ${EMAIL_ENABLED}
+      TZ: America/Argentina/Cordoba
     ports:
       - "3001:3001"
     volumes:
@@ -33,6 +34,7 @@ services:
     image: fabreguesm/sistema_rrhh_front:1.0.12
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
+      TZ: America/Argentina/Cordoba
     ports:
       - "3002:80"
     depends_on:
