@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: fabreguesm/sistema_rrhh_back:1.0.16
+    image: fabreguesm/sistema_rrhh_back:1.0.17
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
@@ -16,6 +16,8 @@ services:
       FRONTEND_URL: ${FRONTEND_URL}
       EMAIL_ENABLED: ${EMAIL_ENABLED}
       TZ: America/Argentina/Cordoba
+      VPN_ENDPOINT_INTERNAL: ${VPN_ENDPOINT_INTERNAL}
+      VPN_ENDPOINT_REMOTE: ${VPN_ENDPOINT_REMOTE}
     ports:
       - "3001:3001"
     volumes:
@@ -31,7 +33,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: fabreguesm/sistema_rrhh_front:1.0.14
+    image: fabreguesm/sistema_rrhh_front:1.0.15
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
       TZ: America/Argentina/Cordoba
