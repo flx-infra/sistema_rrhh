@@ -18,24 +18,27 @@ services:
       TZ: America/Argentina/Cordoba
       VPN_ENDPOINT_INTERNAL: ${VPN_ENDPOINT_INTERNAL}
       VPN_ENDPOINT_REMOTE: ${VPN_ENDPOINT_REMOTE}
-    ports:
-      - "3001:3001"
     volumes:
       - backend_uploads:/app/uploads
-   # healthcheck:
-    #  test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://127.0.0.1:3001/api/health", "||", "exit", "1"]
-    #  interval: 30s
-    #  timeout: 10s
-    #  retries: 3
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=3", "--spider", "http://127.0.0.1:3001/api/health", "||", "exit", "1"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
     restart: unless-stopped
     networks:
       - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.srrhh-back.rule=Host(`10.250.0.68`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.srrhh-back.entrypoints=web"
+      - "traefik.http.services.srrhh-back.loadbalancer.server.port=3001"
 
   frontend:
     build: ./frontend
     image: fabreguesm/sistema_rrhh_front:1.0.21
     environment:
-      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68/api}
       TZ: America/Argentina/Cordoba
     ports:
       - "3002:80"
@@ -46,11 +49,11 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-   # healthcheck:
-    #  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80", "||", "exit", "1"]
-      #interval: 30s
-     # timeout: 10s
-     # retries: 3
+    # healthcheck:
+    #   test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80", "||", "exit", "1"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
     restart: unless-stopped
     networks:
       - traefik
