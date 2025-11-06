@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: fabreguesm/sistema_rrhh_back:1.0.27
+    image: fabreguesm/sistema_rrhh_back:1.0.28
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
@@ -35,7 +35,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: fabreguesm/sistema_rrhh_front:1.0.25
+    image: fabreguesm/sistema_rrhh_front:1.0.26
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
       TZ: America/Argentina/Cordoba
