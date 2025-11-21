@@ -5,7 +5,7 @@ version: '3.8'
 
 services:
   backend:
-    image: fabreguesm/sistema_rrhh_back:1.0.33
+    image: fabreguesm/sistema_rrhh_back:1.0.34
     environment:
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
@@ -20,6 +20,8 @@ services:
       VPN_ENDPOINT_REMOTE: ${VPN_ENDPOINT_REMOTE}
       VPN_ENDPOINT_PROCOM_REMOTO: ${VPN_ENDPOINT_PROCOM_REMOTO}
       VPN_ENDPOINT_PROCOM_PRESENCIAL: ${VPN_ENDPOINT_PROCOM_PRESENCIAL}
+      DB_POOL_LIMIT: ${DB_POOL_LIMIT}
+      DB_ACQUIRE_TIMEOUT_MS: ${DB_ACQUIRE_TIMEOUT_MS}
     ports:
       - "3001:3001"
     volumes:
@@ -35,7 +37,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: fabreguesm/sistema_rrhh_front:1.0.31
+    image: fabreguesm/sistema_rrhh_front:1.0.32
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
       TZ: America/Argentina/Cordoba
