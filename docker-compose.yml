@@ -37,7 +37,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: fabreguesm/sistema_rrhh_front:1.0.69
+    image: fabreguesm/sistema_rrhh_front:1.0.70
     environment:
       REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://10.250.0.68:3001/api}
       TZ: America/Argentina/Cordoba
