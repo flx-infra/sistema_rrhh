@@ -1,62 +1,63 @@
 version: '3.6'
 
-  services:                                                                                                                                                               
-    backend:
-      image: fabreguesm/sistema_rrhh_back:1.0.73                                                                                                                              
-      deploy:
-        placement:
-          constraints: ["${NODE}"]
-      environment:
-        - DB_HOST=${DB_HOST}
-        - DB_PORT=${DB_PORT}
-        - DB_USER=${DB_USER}
-        - DB_PASSWORD=${DB_PASSWORD}
-        - DB_NAME=${DB_NAME}
-        - JWT_SECRET=${JWT_SECRET}
-        - FRONTEND_URL=${FRONTEND_URL}
-        - EMAIL_ENABLED=${EMAIL_ENABLED}
-        - SMTP_HOST=${SMTP_HOST}
-        - SMTP_PORT=${SMTP_PORT}
-        - SMTP_USER=${SMTP_USER}
-        - SMTP_PASS=${SMTP_PASS}
-        - TZ=America/Argentina/Cordoba
-        - VPN_ENDPOINT_INTERNAL=${VPN_ENDPOINT_INTERNAL}
-        - VPN_ENDPOINT_REMOTE=${VPN_ENDPOINT_REMOTE}
-        - VPN_ENDPOINT_PROCOM_REMOTO=${VPN_ENDPOINT_PROCOM_REMOTO}
-        - VPN_ENDPOINT_PROCOM_PRESENCIAL=${VPN_ENDPOINT_PROCOM_PRESENCIAL}
-        - DB_POOL_LIMIT=${DB_POOL_LIMIT}
-        - DB_ACQUIRE_TIMEOUT_MS=${DB_ACQUIRE_TIMEOUT_MS}
-        - SIMULATED_DATE=${SIMULATED_DATE}
-      ports:
-        - "3001:3001"
-      volumes:
-        - backend_uploads:/app/uploads
-      networks:
-        - traefik
-      logging:
-        driver: loki
-        options:
-          loki-url: ${LOKI_URL}
+services:
+  backend:
+    image: fabreguesm/sistema_rrhh_back:1.0.73                                                                                                                              
+    deploy:
+      placement:
+        constraints: ["${NODE}"]
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - EMAIL_ENABLED=${EMAIL_ENABLED}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - TZ=America/Argentina/Cordoba
+      - VPN_ENDPOINT_INTERNAL=${VPN_ENDPOINT_INTERNAL}
+      - VPN_ENDPOINT_REMOTE=${VPN_ENDPOINT_REMOTE}
+      - VPN_ENDPOINT_PROCOM_REMOTO=${VPN_ENDPOINT_PROCOM_REMOTO}
+      - VPN_ENDPOINT_PROCOM_PRESENCIAL=${VPN_ENDPOINT_PROCOM_PRESENCIAL}
+      - DB_POOL_LIMIT=${DB_POOL_LIMIT}
+      - DB_ACQUIRE_TIMEOUT_MS=${DB_ACQUIRE_TIMEOUT_MS}
+      - SIMULATED_DATE=${SIMULATED_DATE}
+    ports:
+      - "3001:3001"
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - traefik
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
 
-    frontend:
-      image: fabreguesm/sistema_rrhh_front:1.0.74
-      deploy:
-        placement:
-          constraints: ["${NODE}"]
-      environment:
-        - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
-        - TZ=America/Argentina/Cordoba
-      ports: 
-       -"3002:80"
-      networks:
-        - traefik
-      logging:
-        driver: loki
-        options:
-          loki-url: ${LOKI_URL}
-  volumes:
-    backend_uploads:
+  frontend:
+    image: fabreguesm/sistema_rrhh_front:1.0.74
+    deploy:
+      placement:
+        constraints: ["${NODE}"]
+    environment:
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+      - TZ=America/Argentina/Cordoba
+    ports: 
+     - "3002:80"
+    networks:
+      - traefik
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+volumes:
+  backend_uploads:
 
-  networks:
-    traefik:
-      external: traefik-network
+networks:
+  traefik:
+    external: 
+      name: traefik-network
