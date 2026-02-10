@@ -56,7 +56,7 @@ services:
         loki-url: ${LOKI_URL}
 volumes:
   backend_uploads:
-    name: "${SERVICE_NAME}_bakend_uploads"
+    name: "${SERVICE_NAME}_backend_uploads"
 
 networks:
   traefik:
