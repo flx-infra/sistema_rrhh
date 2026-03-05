@@ -13,7 +13,7 @@ services:
       - DB_PASSWORD=Flexxus2023**
       - DB_NAME=sistema_rrhh
       - JWT_SECRET=your_jwt_secret_key_minimum_32_chars
-      - FRONTEND_URL=http://10.250.0.68:3002
+      - FRONTEND_URL=https://rrhh-prueba.flexxus.com.ar
       - EMAIL_ENABLED=false
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=587
